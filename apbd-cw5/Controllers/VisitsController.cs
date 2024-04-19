@@ -33,8 +33,17 @@ public class VisitsController : ControllerBase
     [HttpPost]
     public IActionResult AddVisit(Visit visit)
     {
-        Visits.Add(visit);
-    
-        return Created();
+        foreach (var animal in AnimalsController._animals)
+        {
+            if (animal.ID == visit.AnimalID)
+            {
+                Visits.Add(visit);
+                return Created();
+                
+            }
+
+        }
+
+        return NotFound($"Animal with ID {visit.AnimalID} not in database - cannot add a visit.");
     }
 }
