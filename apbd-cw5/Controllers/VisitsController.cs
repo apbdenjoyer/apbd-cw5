@@ -34,6 +34,7 @@ public class VisitsController : ControllerBase
     public IActionResult AddVisit(Visit visit)
     {
         Visits.Add(visit);
+    
         return Created();
     }
 }
